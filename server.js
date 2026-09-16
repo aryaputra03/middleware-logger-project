@@ -3,6 +3,7 @@ const routes = require("./src/routes/index");
 const loggerMiddleware = require("./src/middlewares/logger");
 
 const app = express();
+app.disable("etag");
 const PORT = 3000;
 
 app.use(loggerMiddleware); // HARUS di atas, sebelum express.json() dan routes
