@@ -19,4 +19,9 @@ router.post("/users", (req, res) => {
   res.status(201).json({ message: "User berhasil dibuat" });
 });
 
+// Endpoint untuk menguji error handling
+router.get("/error-test", (req, res) => {
+  throw new Error("Simulasi error untuk pengujian logger");
+});
+
 module.exports = router;
