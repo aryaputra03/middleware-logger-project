@@ -1,4 +1,5 @@
 const writeLog = require("../utils/writeLog");
+const formatLogLine = require("../utils/formatLog");
 
 function loggerMiddleware(req, res, next) {
   const startTime = process.hrtime();
@@ -12,10 +13,18 @@ function loggerMiddleware(req, res, next) {
     const diff = process.hrtime(startTime);
     const durationMs = (diff[0] * 1000 + diff[1] / 1e6).toFixed(2);
 
-    const logLine = `[${timestamp}] ${method} ${url} - IP: ${ip} - UA: ${userAgent} - Status: ${res.statusCode} - ${durationMs}ms`;
+    const logLine = formatLogLine({
+      timestamp,
+      method,
+      url,
+      ip,
+      userAgent,
+      statusCode: res.statusCode,
+      durationMs,
+    });
 
-    console.log(logLine); // tetap tampil di console untuk development
-    writeLog(logLine); // sekaligus ditulis ke file
+    console.log(logLine);
+    writeLog(logLine);
   });
 
   next();
