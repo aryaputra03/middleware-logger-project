@@ -8,6 +8,7 @@ const PORT = 3000;
 
 app.use(loggerMiddleware); // HARUS di atas, sebelum express.json() dan routes
 app.use(express.json());
+app.use(express.static("public"));
 app.use("/", routes);
 
 // Error handler - HARUS diletakkan paling akhir, setelah semua route

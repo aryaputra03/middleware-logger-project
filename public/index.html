@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard untuk Middleware Logger System" />
+    <title>Logger System Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <nav><a class="brand" href="/"><span class="brand-mark">&gt;_</span> Logger<span>System</span></a><span class="status"><i></i> Server online</span></nav>
+        <div class="hero-content">
+          <p class="eyebrow">Express.js · Middleware observability</p>
+          <h1>Amati setiap <em>request</em> dengan lebih jelas.</h1>
+          <p class="lead">Dashboard sederhana untuk mencoba endpoint, melihat respons API, dan memastikan request tercatat oleh middleware logger Anda.</p>
+          <div class="quick-links"><a href="#users">Kelola pengguna <b>↓</b></a><a href="#api-console">API console <b>↓</b></a></div>
+        </div>
+        <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+      </section>
+
+      <section class="overview" aria-label="Ringkasan API">
+        <article><span class="card-icon violet">◌</span><div><strong id="user-count">--</strong><small>Pengguna terdaftar</small></div></article>
+        <article><span class="card-icon green">↯</span><div><strong>3</strong><small>Endpoint tersedia</small></div></article>
+        <article><span class="card-icon orange">✓</span><div><strong id="api-status">Siap</strong><small>Status koneksi API</small></div></article>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading" id="users"><div><p class="eyebrow">Data pengguna</p><h2>Daftar pengguna</h2></div><button class="button secondary" id="refresh-users">↻ Muat ulang</button></div>
+        <div class="users-layout">
+          <div class="panel users-panel"><div class="panel-title"><span>GET</span><code>/users</code></div><div id="users-list" class="users-list" aria-live="polite"><p class="empty">Memuat data pengguna…</p></div></div>
+          <form class="panel create-panel" id="create-user"><div class="panel-title"><span class="post">POST</span><code>/users</code></div><h3>Tambahkan pengguna</h3><p>Buat request POST untuk menguji pencatatan aktivitas.</p><label for="name">Nama pengguna</label><input id="name" name="name" placeholder="Contoh: Siti" required minlength="2" /><button class="button primary" type="submit">Kirim request <b>→</b></button></form>
+        </div>
+      </section>
+
+      <section class="console-section" id="api-console">
+        <div class="section-heading"><div><p class="eyebrow">Request playground</p><h2>API console</h2></div><button class="button danger" id="test-error">Uji error handler</button></div>
+        <div class="console"><div class="console-top"><div class="dots"><i></i><i></i><i></i></div><span>response.json</span></div><pre id="console-output"><code>// Pilih aksi di atas untuk melihat respons API.</code></pre></div>
+        <p class="hint">Setiap aksi akan membuat entri baru di <code>logs/access.log</code>.</p>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
